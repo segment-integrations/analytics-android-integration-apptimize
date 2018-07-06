@@ -1,4 +1,4 @@
-package com.segment.analytics.android.integrations.apptimize;
+package com.apptimize.segment;
 
 import com.apptimize.Apptimize;
 import com.apptimize.Apptimize.OnExperimentRunListener;
@@ -89,7 +89,9 @@ public class ApptimizeIntegration extends Integration<Void> implements OnExperim
 
   @Override
   public void onExperimentRun(String experimentName, String variantName, boolean firstRun) {
-    analytics.track("Experiment Viewed", new Properties().putValue("experimentName", experimentName)
-        .putValue("variationName", variantName));
+    if (firstRun) {
+      analytics.track("Experiment Viewed", new Properties().putValue("experimentName", experimentName)
+          .putValue("variationName", variantName));
+    }
   }
 }
